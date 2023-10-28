@@ -118,3 +118,6 @@ while True:
         ball.dx *= -1
 
 # Exit the game loop (You can use wn.exitonclick() to close the window when clicking on it)
+# hello 
+# bye
+# no
