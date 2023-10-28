@@ -1,2 +1,3 @@
-line1
-line2
+#!/usr/bin/env python3
+print('Is Naruto stronger than Buroto?')
+
