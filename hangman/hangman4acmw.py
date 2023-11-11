@@ -37,7 +37,6 @@ print(images)
 
 # game variables
 hangman_status = 0 # status of where we are in the game
-# words = ["JUHI", "SRUTHI", "HUSNA", "SNIGDHA"]
 word_file = "/usr/share/dict/words"
 WORDS = open(word_file).read().splitlines()
 word = random.choice(WORDS).upper().replace("'","")
@@ -87,7 +86,7 @@ def display_message(message):
     text = WORD_FONT.render(message, 1, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2))
     pygame.display.update()
-    pygame.time.delay(3000)
+    pygame.time.delay(1500)
     
 
 while run :
