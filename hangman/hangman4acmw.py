@@ -37,8 +37,11 @@ print(images)
 
 # game variables
 hangman_status = 0 # status of where we are in the game
-words = ["JUHI", "SRUTHI", "HUSNA", "SNIGDHA"]
-word = random.choice(words)
+# words = ["JUHI", "SRUTHI", "HUSNA", "SNIGDHA"]
+word_file = "/usr/share/dict/words"
+WORDS = open(word_file).read().splitlines()
+word = random.choice(WORDS).upper().replace("'","")
+# word = random.choice(words)
 guessed = []
 
 #colours
