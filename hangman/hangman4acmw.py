@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
 import pygame
 import math
+import random
 
 # set up display
 pygame.init()
@@ -22,6 +24,8 @@ for i in range(26):
 # fonts
 LETTER_FONT = pygame.font.SysFont('comicsans', 40)
 WORD_FONT = pygame.font.SysFont('comicsans', 60)
+TITLE_FONT = pygame.font.SysFont('comicsans', 80)
+
 
 # loading of images
 images = []
@@ -33,7 +37,8 @@ print(images)
 
 # game variables
 hangman_status = 0 # status of where we are in the game
-word = "DEVELOPER"
+words = ["JUHI", "SRUTHI", "HUSNA", "SNIGDHA"]
+word = random.choice(words)
 guessed = []
 
 #colours
@@ -47,6 +52,10 @@ run = True
 
 def draw(): 
     win.fill(BLUE)
+
+    #draw title
+    text = TITLE_FONT.render("developer hangman", 1, BLACK)
+    win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
 
     # draw word
     display_word = ""
@@ -70,17 +79,17 @@ def draw():
     pygame.display.update()
 
 def display_message(message):
+    pygame.time.delay(2000)
     win.fill(BLUE)
     text = WORD_FONT.render(message, 1, BLACK)
-    win.blit(text, WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2)
+    win.blit(text, (WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2))
     pygame.display.update()
-    pygame.time.delay(5000)
+    pygame.time.delay(3000)
     
 
 while run :
     clock.tick(FPS) #to make sure the clock runs at the FPS set at the start
 
-    draw()
 
     #using a for loop to check for events
     for event in pygame.event.get(): #stores events that happen, we will loop through events and store the one happeneing here 
@@ -98,14 +107,18 @@ while run :
                         guessed.append(ltr)
                         if ltr not in word:
                             hangman_status += 1
+
+    draw()
+
 # checking so see if the user won
     won = True
     for letter in word :
         if letter not in guessed :
             won = False
             break
+
     if won :
-        display_message("YOU WON :o")
+        display_message("YOU WON OMG")
         break
 
     if hangman_status == 6 :
