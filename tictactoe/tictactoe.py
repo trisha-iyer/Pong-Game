@@ -30,6 +30,7 @@ def checkWin(xstate, ostate) :
             print("O won !")
             return 0 
         
+        
     return -1
     
 
@@ -38,21 +39,39 @@ if __name__ == "__main__" :
     ostate = [0,0,0,0,0,0,0,0,0]
     turn = 1 # 1 for X and 0 for O
     print("welcome to tic tac toe")
-    while(True):
+    while True:
         printBoard(xstate, ostate)
-        if(turn == 1):
+        if turn == 1:
+            print("X's chance")
+        else:
+            print("O's chance")
+
+        value = int(input("Please enter a position: "))
+        if turn == 1:
+            xstate[value] = 1
+        else:
+            ostate[value] = 1
+
+        
+        '''if(turn == 1):
             print("X's chance")
             value = int(input("please enter a position: "))
             xstate[value] = 1
         else :
             print("O's chance")
             value = int(input("please enter a position: "))
-            ostate[value] = 1
+            ostate[value] = 1'''
 
         cwin = checkWin(xstate, ostate)
-        if(cwin != -1) :
+        if cwin != -1 :
             print("match over")
             break
+
+        # Check for a draw after every move
+        if all(xstate[i] or ostate[i] for i in range(9)):
+            print("It's a draw!")
+            break
+
         
         turn = 1 - turn
 
